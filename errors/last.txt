@@ -1,0 +1,21 @@
+* EXCEPTION:
+* ERROR - :set_value method missing on ~NilClass~.
+
+#+begin_src ~NilClass#inspect~
+nil
+#+end_src ~NilClass#inspect~
+
+
+
+The method named
+  :set_value
+with args
+  [1]
+doesn't exist on [NilClass, NilClassFalseClass].
+
+(suggestions above)
+** Backtrace:
+*** app/7segment_display.rb:94:in set_digit
+*** app/7segment_display.rb:89:in set_value
+*** app/7segment_display.rb:88:in set_value
+*** app/main.rb:17:in tick
