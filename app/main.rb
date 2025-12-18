@@ -16,10 +16,12 @@ def init args
   args.state.count_frames = 30
 end
 
+# Really quick and dirty buttons
 def render_buttons args
   out = []
   args.state.buttons.each do |b|
       out << b.solid!
+      out << (b.merge({r:255, g:255, b:255})).border!
       out << (b.merge({y: b.y + b.h - 16, x: b.x + 32, r:0, g:0, b:0, size_enum: b.h/8, text: b.value.to_s})).label!
   end
   out
