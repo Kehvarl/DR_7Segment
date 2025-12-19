@@ -6,10 +6,17 @@ def init args
   # Color can be set during initial creation or after the fact
   args.state.counter.set_color(255, 196, 0)
 
+  #Define 3 buttons that increase the counter
   args.state.buttons = [
     {x:768, y:200, w:128, h:64, r:128, g:128, b:128, value:1},
     {x:608, y:200, w:128, h:64, r:128, g:128, b:128, value:10},
     {x:448, y:200, w:128, h:64, r:128, g:128, b:128, value:100}
+  ]
+
+  args.state.colors = [
+    {x:768, y:128, w:128, h:64, r:255, g:0, b:0},
+    {x:608, y:128, w:128, h:64, r:0, g:255, b:0},
+    {x:448, y:128, w:128, h:64, r:0, g:128, b:255}
   ]
 
   args.state.value = 0
@@ -24,6 +31,11 @@ def render_buttons args
       out << (b.merge({r:255, g:255, b:255})).border!
       out << (b.merge({y: b.y + b.h - 16, x: b.x + 32, r:0, g:0, b:0, size_enum: b.h/8, text: b.value.to_s})).label!
   end
+
+  args.state.colors.each do |b|
+      out << b.solid!
+      out << (b.merge({r:255, g:255, b:255})).border!
+  end
   out
 end
 
@@ -36,6 +48,10 @@ def tick args
     args.geometry.find_all_intersect_rect(args.inputs.mouse, args.state.buttons).each do |b|
       args.state.value += b.value
       args.state.counter.set_value(args.state.value.to_s().rjust(4, '0'))
+    end
+
+    args.geometry.find_all_intersect_rect(args.inputs.mouse, args.state.colors).each do |b|
+      args.state.counter.set_color(b.r, b.g, b.b)
     end
   end
 
