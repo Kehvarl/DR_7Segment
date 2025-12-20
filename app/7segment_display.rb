@@ -21,6 +21,16 @@ class SevenSegmentDigit
         @b = b
     end
 
+    def xor_color r, g, b
+        @r ^= r
+        @g ^= g
+        @b ^= b
+    end
+
+    def get_color
+        {r:@r, g:@g, b:@b}
+    end
+
     def set_value value
         @value = value % 10
         @source_x = @value * @source_w
@@ -50,8 +60,18 @@ class SevenSegnment
         @digit.increment
     end
 
-    def set_color r, g, b
+    def set_color r, g, b, a=@a
         @digit.set_color r, g, b
+        @a = a
+    end
+
+
+    def xor_color r, g, b
+        @digit.xor_color r, g, b
+    end
+
+    def get_color
+        @digit.get_color
     end
 
     def render
@@ -94,8 +114,16 @@ class SevenSegmentDisplay
         @digits[digit].set_value(value)
     end
 
-    def set_color r, g, b
-        @digits.each{|d| d.set_color(r, g, b)}
+    def set_color r, g, b, a=nil
+        @digits.each{|d| d.set_color(r, g, b, a)}
+    end
+
+    def xor_color r, g, b
+        @digits.each{|d| d.xor_color(r, g, b)}
+    end
+
+    def get_color digit=0
+        @digits[digit].get_color
     end
 
     def render
