@@ -4,7 +4,7 @@ def init args
 
   args.state.counter = SevenSegmentDisplay.new({x:512, y:312, w:256, h:96, bga:128, digits:4})
   # Color can be set during initial creation or after the fact
-  args.state.counter.set_color(255, 196, 0)
+  args.state.counter.set_color(255, 255, 0)
 
   #Define 3 buttons that increase the counter
   args.state.buttons = [
@@ -14,9 +14,9 @@ def init args
   ]
 
   args.state.colors = [
-    {x:768, y:128, w:128, h:64, r:255, g:0, b:0},
-    {x:608, y:128, w:128, h:64, r:0, g:255, b:0},
-    {x:448, y:128, w:128, h:64, r:0, g:128, b:255}
+    {x:768, y:128, w:128, h:64, r:255, g:0, b:0, value:""},
+    {x:608, y:128, w:128, h:64, r:0, g:255, b:0, value:""},
+    {x:448, y:128, w:128, h:64, r:0, g:0, b:255, value:""}
   ]
 
   args.state.value = 0
@@ -35,6 +35,8 @@ def render_buttons args
   args.state.colors.each do |b|
       out << b.solid!
       out << (b.merge({r:255, g:255, b:255})).border!
+      out << (b.merge({y: b.y + b.h - 16, x: b.x + 32, r:0, g:0, b:0, size_enum: b.h/8, text: b.value.to_s})).label!
+
   end
   out
 end
@@ -51,7 +53,8 @@ def tick args
     end
 
     args.geometry.find_all_intersect_rect(args.inputs.mouse, args.state.colors).each do |b|
-      args.state.counter.set_color(b.r, b.g, b.b)
+      args.state.counter.xor_color(b.r, b.g, b.b)
+      puts args.state.counter.get_color
     end
   end
 
