@@ -14,14 +14,13 @@ SevenSegmentDisplay.new
     digits:  Number of Digits. Default: 4
     bga: Alpha/Transparency of display background image.  Default: 255
     r: Red channel. Default 255
-    g: Green chennel. Default 255
+    g: Green channel. Default 255
     b: Blue channel. Default 255
-
     ```ruby
         SevenSegmentDisplay.new({x:512, y:312, w:256, h:96, bga:128, digits:4})
     ```
 
-SeventSegmentDisplay.set_value(str)
+SevenSegmentDisplay.set_value(str)
     Expects a string containing the numeric value to display.
     Discards any decimal point
     Recommend padding with 0s to the correct length
@@ -29,12 +28,19 @@ SeventSegmentDisplay.set_value(str)
         MyDisplay.set_value(args.state.value.to_s().rjust(4, '0'))
     ```
 
-SeventSegmentDisplay.set_digit(digit_index, value)
+SevenSegmentDisplay.set_digit(digit_index, value)
 
-SeventSegmentDisplay.set_color(r,g,b)
+SevenSegmentDisplay.set_color(r,g,b)
 
-SeventSegmentDisplay.xor_color(r,g,b)
+SevenSegmentDisplay.xor_color(r,g,b)
 
-SeventSegmentDisplay.get_color()
+SevenSegmentDisplay.get_color()
+
+SevenSegmentDisplay.render()
+    Returns an array of sprites ready to add to args.outputs.primitives
+    ```ruby
+        args.outputs.primitives << MyDisplay.render()
+    ```
+
 
 

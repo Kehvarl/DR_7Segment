@@ -41,7 +41,7 @@ class SevenSegmentDigit
     end
 end
 
-class SevenSegnment
+class SevenSegment
     def initialize args={}
         @x = args.x || 0
         @y = args.y || 0
@@ -96,16 +96,19 @@ class SevenSegmentDisplay
     def setup_digits args
         tmp = args.copy()
         dw = @w / @count
-        @count.each do |c|
+        @count.times do |c|
             tmp.x =  @x + (dw*c)
             tmp.w = dw
             tmp.val = 0
-            @digits << SevenSegnment.new(tmp)
+            @digits << SevenSegment.new(tmp)
         end
     end
 
     def set_value value
-        value.delete('.').chars.map(&:to_i).each_with_index do |d, i|
+        value.to_s().delete('.').chars.map(&:to_i).each_with_index do |d, i|
+            if i > @count
+                break
+            end
             set_digit(i, d)
         end
     end

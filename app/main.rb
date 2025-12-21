@@ -54,7 +54,6 @@ def tick args
 
     args.geometry.find_all_intersect_rect(args.inputs.mouse, args.state.colors).each do |b|
       args.state.counter.xor_color(b.r, b.g, b.b)
-      puts args.state.counter.get_color
     end
   end
 
