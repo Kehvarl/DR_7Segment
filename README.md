@@ -29,12 +29,27 @@ SevenSegmentDisplay.set_value(str)
     ```
 
 SevenSegmentDisplay.set_digit(digit_index, value)
+    Sets a specific digit to the provided value
+    ```ruby
+        MyDisplay.set_value(0, 8)
+    ```
 
 SevenSegmentDisplay.set_color(r,g,b)
+    Sets the color of all digits to the provided R, G, B value
+    ```ruby
+        MyDisplay.set_color(255, 255, 255)
+    ```
 
 SevenSegmentDisplay.xor_color(r,g,b)
+    XORs the color of all digits with the provided R, G, B value
+    ```ruby
+        MyDisplay.set_color(0, 0, 255)
+    ```
 
 SevenSegmentDisplay.get_color()
+    ```ruby
+        cur_color = MyDisplay.get_color()
+    ```
 
 SevenSegmentDisplay.render()
     Returns an array of sprites ready to add to args.outputs.primitives
