@@ -42,11 +42,13 @@ SevenSegmentDisplay.set_color(r,g,b)
 
 SevenSegmentDisplay.xor_color(r,g,b)
     XORs the color of all digits with the provided R, G, B value
+    Useful for toggling a color on and off
     ```ruby
         MyDisplay.set_color(0, 0, 255)
     ```
 
 SevenSegmentDisplay.get_color()
+    Gets the color of the first digit (and thus of the entire display)
     ```ruby
         cur_color = MyDisplay.get_color()
     ```
