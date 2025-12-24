@@ -65,6 +65,19 @@ def tick args
   end
 
   args.outputs.primitives << {x:0, y:0, w:1280, h:720, r:0, g:0, b:0}.solid!
+  # Quick and Dirty Border around the counter
+  r = args.state.counter.get_rect()
+  r.x -=3
+  r.y -=3
+  r.w +=6
+  r.h +=6
+  args.outputs.primitives << (r.merge({r:96, g:96, b:96})).solid!
+  r.x +=1
+  r.y +=1
+  r.w -=2
+  r.h -=2
+  args.outputs.primitives << (r.merge({r:196, g:196, b:196})).border!
+
   # The "render" function returns an array that's ready to drop straight into your primitives.
   args.outputs.primitives << args.state.counter.render()
 

@@ -83,6 +83,7 @@ class SevenSegment
 end
 
 class SevenSegmentDisplay
+    attr_accessor :x, :y, :w, :h
     def initialize args={}
         @x = args.x || 0
         @y = args.y || 0
@@ -127,6 +128,10 @@ class SevenSegmentDisplay
 
     def get_color digit=0
         @digits[digit].get_color
+    end
+
+    def get_rect
+        {x:@x, y:@y, w:@w, h:@h}
     end
 
     def render
