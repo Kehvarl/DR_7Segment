@@ -65,7 +65,6 @@ class SevenSegment
         @a = a
     end
 
-
     def xor_color r, g, b
         @digit.xor_color r, g, b
     end
